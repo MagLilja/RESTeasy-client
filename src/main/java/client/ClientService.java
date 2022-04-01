@@ -89,6 +89,14 @@ public class ClientService {
                 .get()
                 .readEntity(new GenericType<List<Profile>>() {
                 });
+    }
 
+    static Profile updateProfile(int id, Profile profile) {
+        return client
+                .target(uri + "/profiles/" + id)
+                .request(APPLICATION_JSON)
+                .buildPost(Entity.entity(profile, "application/JSON"))
+                .invoke() // Sending request
+                .readEntity(Profile.class); // reading response body
     }
 }
