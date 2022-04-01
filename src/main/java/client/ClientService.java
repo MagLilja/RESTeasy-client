@@ -16,14 +16,18 @@ public class ClientService {
     static Client client = ClientBuilder.newBuilder().build();
 
     static Profile addProfile(Profile newProfile) {
+        Response response = null;
         try {
-            return client.target(uri + "/profiles")
+            response = client.target(uri + "/profiles")
                     .request(APPLICATION_JSON)
                     .buildPost(Entity.entity(newProfile, "application/JSON"))
                     .invoke()
+            ;
+            return response
                     .readEntity(Profile.class);
         } catch (Exception ex) {
-            System.err.println("This resource does not exist");
+            ex.printStackTrace();
+            System.err.println("Client error " + response.getStatus());
             return null;
         }
     }
@@ -92,11 +96,20 @@ public class ClientService {
     }
 
     static Profile updateProfile(int id, Profile profile) {
-        return client
-                .target(uri + "/profiles/" + id)
-                .request(APPLICATION_JSON)
-                .buildPost(Entity.entity(profile, "application/JSON"))
-                .invoke() // Sending request
-                .readEntity(Profile.class); // reading response body
+        Response response = null;
+        try {
+            response = client
+                    .target(uri + "/profiles/" + id)
+                    .request(APPLICATION_JSON)
+                    .buildPut(Entity.entity(profile, "application/JSON"))
+                    .invoke();
+            return response
+                    .readEntity(Profile.class);
+        } catch (Exception ex) {
+            System.out.println("Error " + response.getStatus());
+            return null;
+        }
+
+
     }
 }
