@@ -3,11 +3,9 @@ package client;
 
 import model.Profile;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
+
 
 
 public class ClientApplication {
