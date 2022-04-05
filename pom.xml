@@ -15,12 +15,6 @@
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.resteasy</groupId>-->
-<!--            <artifactId>resteasy-client</artifactId>-->
-<!--            <version>3.9.3.Final</version>-->
-<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
         <dependency>
