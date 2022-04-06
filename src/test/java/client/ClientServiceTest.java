@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClientServiceTest {
 
+    // The tests needs mocking to be correct tests!
+
     @Test
     void updateProfileTest() {
         // given
