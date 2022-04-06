@@ -6,8 +6,12 @@ import model.Profile;
 import java.util.List;
 import java.util.Scanner;
 
-
-
+/**
+ * A simple client application for communicating with the Profile server.
+ *
+ * @author Magnus Lilja
+ * @author Andreas Karlsson
+ */
 public class ClientApplication {
 
     public static void main(String[] args) {

@@ -12,8 +12,8 @@ Using
 - RESTeasy client 6.0.0
 - Jackson2 6.0.0
 
-- Server application found here:
-  - **https://github.com/MagLilja/ServProg-Grupp1-Server**
+The server application can be found here:
+- https://github.com/MagLilja/ServProg-Grupp1-Server
 
 ## How to Clone and Build
 

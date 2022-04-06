@@ -12,7 +12,7 @@ import java.util.List;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
- * A static service class for the Client Application with methos to perfom CRUD operations on the server.
+ * A static service class for the Client Application with methods to perform CRUD operations on the server.
  * @author Magnus Lilja
  * @author Andreas Karlsson
  */
@@ -23,7 +23,7 @@ public class ClientService {
     /**
      * Method to add a profile to the server through a POST request.
      * @param newProfile to add
-     * @returns the new profile on success, else it prints the error and returns null.
+     * @return the new profile on success, else it prints the error and returns null.
      */
     static Profile addProfile(Profile newProfile) {
         try (Response response = client.target(uri + "/profiles")
@@ -42,7 +42,7 @@ public class ClientService {
     /**
      * Method to find a profile on the server by id.
      * @param id of the profile.
-     * @returns a profile on success, otherwise returns null.
+     * @return a profile on success, otherwise returns null.
      */
     static Profile getProfileById(int id) {
         try (Response response = client
@@ -61,7 +61,7 @@ public class ClientService {
     /**
      * Method to delete a profile on the server through a DELETE request.
      * @param id of the profile to delete
-     * @returns true on success and false on fail.
+     * @return true on success and false on fail.
      */
     static boolean deleteProfile(int id) {
         try (Response response = client
@@ -122,7 +122,7 @@ public class ClientService {
 
     /**
      * Method to get all profiles from the server through a GET request
-     * @returns a list of profiles.
+     * @return a list of profiles.
      */
     static List<Profile> getAllProfiles() {
         return client
