@@ -12,9 +12,12 @@ Using
 - RESTeasy client 6.0.0
 - Jackson2 6.0.0
 
+- Server application found here:
+  - **https://github.com/MagLilja/ServProg-Grupp1-Server**
+
 ## How to Clone and Build
 
-##IntelliJ
+## IntelliJ
 
 Create new project from Version Control
 
@@ -35,4 +38,4 @@ Run the following Maven Goal to run the application with Maven:
     mvn exec:java
 
 
-#Hope this helps!
+# Hope this helps!
