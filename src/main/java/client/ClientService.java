@@ -13,6 +13,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * A static service class for the Client Application with methods to perform CRUD operations on the server.
+ *
  * @author Magnus Lilja
  * @author Andreas Karlsson
  */
@@ -22,6 +23,7 @@ public class ClientService {
 
     /**
      * Method to add a profile to the server through a POST request.
+     *
      * @param newProfile to add
      * @return the new profile on success, else it prints the error and returns null.
      */
@@ -41,6 +43,7 @@ public class ClientService {
 
     /**
      * Method to find a profile on the server by id.
+     *
      * @param id of the profile.
      * @return a profile on success, otherwise returns null.
      */
@@ -60,6 +63,7 @@ public class ClientService {
 
     /**
      * Method to delete a profile on the server through a DELETE request.
+     *
      * @param id of the profile to delete
      * @return true on success and false on fail.
      */
@@ -72,8 +76,7 @@ public class ClientService {
                 return false;
             }
             return true;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.err.println("Error " + ex.getMessage());
         }
         return false;
@@ -81,8 +84,9 @@ public class ClientService {
 
     /**
      * Method to search for a profile by firstname and lastname through a GET request.
+     *
      * @param firstName to search for
-     * @param lastName to search for
+     * @param lastName  to search for
      * @return a list of profiles matching the search from the server.
      */
     static List<Profile> searchByLastAndFirstName(String lastName, String firstName) {
@@ -95,6 +99,7 @@ public class ClientService {
 
     /**
      * Method to search for a profile by lastname through a GET request.
+     *
      * @param lastName to search for
      * @return a list of profiles matching the search from the server.
      */
@@ -108,6 +113,7 @@ public class ClientService {
 
     /**
      * Method to search for a profile by firstname through a GET request.
+     *
      * @param firstName to search for
      * @return a list of profiles matching the search from the server.
      */
@@ -122,6 +128,7 @@ public class ClientService {
 
     /**
      * Method to get all profiles from the server through a GET request
+     *
      * @return a list of profiles.
      */
     static List<Profile> getAllProfiles() {
@@ -135,23 +142,23 @@ public class ClientService {
 
     /**
      * Method to update a profile on the server through a PUT request.
-     * @param id of the profile to update
+     *
+     * @param id      of the profile to update
      * @param profile with changes
-     * @return on success returns the profile with changes, else returns null and prints the error status.
+     * @return on success returns the response, else returns null and prints the error status.
      */
-    static Profile updateProfile(int id, Profile profile) {
-        Response response = null;
-        try {
-            response = client
-                    .target(uri + "/profiles/" + id)
-                    .request(APPLICATION_JSON)
-                    .buildPut(Entity.entity(profile, "application/JSON"))
-                    .invoke();
-            return response
-                    .readEntity(Profile.class);
-        } catch (Exception ex) {
-            System.out.println("Error " + response.getStatus());
-            return null;
+    static Response updateProfile(int id, Profile profile) {
+
+        try (Response response = client
+                .target(uri + "/profiles/" + id)
+                .request(APPLICATION_JSON)
+                .buildPut(Entity.entity(profile, "application/JSON"))
+                .invoke();) {
+            if (response.getStatus() != 202) {
+                System.err.println(response.getStatus());
+                return response;
+            }
+            return response;
         }
     }
 }

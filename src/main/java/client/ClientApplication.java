@@ -1,6 +1,7 @@
 package client;
 
 
+import jakarta.ws.rs.core.Response;
 import model.Profile;
 
 import java.util.List;
@@ -95,8 +96,8 @@ public class ClientApplication {
             profileToUpdate.setLastName(newLastName);
         }
         System.out.println("\n:---------- Profile With ID Updated = " + updateId + " ----------:\n");
-        Profile updatedProfile = ClientService.updateProfile(updateId, profileToUpdate);
-        System.out.println(updatedProfile);
+        Response response = ClientService.updateProfile(updateId, profileToUpdate);
+        System.out.println(response.readEntity(Profile.class));
         waitForInput(scanner);
     }
 

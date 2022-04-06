@@ -1,6 +1,7 @@
 package client;
 
 
+import jakarta.ws.rs.core.Response;
 import model.Profile;
 import org.junit.jupiter.api.Test;
 
@@ -12,44 +13,17 @@ class ClientServiceTest {
     // The tests needs mocking to be correct tests!
 
     @Test
-    void updateProfileTest() {
+    void updateProfileMethodShouldReturnStatus202Test() {
         // given
         int updateId = 2;
-        Profile profileToUpdate = ClientService.getProfileById(updateId);
-        String newUserName = "cooool";
-        String newFirstName = "hej";
-        String newLastName = "";
-
-        if (!newUserName.equals("")) {
-            profileToUpdate.setUserName(newUserName);
-        }
-
-        if (!newFirstName.equals("")) {
-            profileToUpdate.setFirstName(newFirstName);
-        }
-        if (!newLastName.equals("")) {
-            profileToUpdate.setLastName(newLastName);
-        }
-
-        Profile updatedProfile = ClientService.updateProfile(updateId, profileToUpdate);
-
+        Profile profileToUpdate = new Profile();
+        profileToUpdate.setUserName("cooool");
+        profileToUpdate.setFirstName("firstname");
+        profileToUpdate.setLastName("lastname");
         // when
-        assertTrue(updatedProfile instanceof Profile);
+        Response response = ClientService.updateProfile(updateId, profileToUpdate);
         // then
-
+        assertEquals(202, response.getStatus());
     }
-
-    @Test
-    void addProfileTest() {
-        // given
-        Profile newProfile1 = new Profile("mag", "mag", "mag");
-
-        if (ClientService.addProfile(newProfile1) != null) {
-            System.out.println("New profile created!");
-        } else {
-            System.out.println("Profile not created, try again!");
-        }
-    }
-
 
 }
