@@ -21,9 +21,9 @@ class ClientServiceTest {
         profileToUpdate.setFirstName("firstname");
         profileToUpdate.setLastName("lastname");
         // when
-        Response response = ClientService.updateProfile(updateId, profileToUpdate);
+        Profile response = ClientService.updateProfile(updateId, profileToUpdate);
         // then
-        assertEquals(202, response.getStatus());
+        assertNotNull(response);
     }
 
 }

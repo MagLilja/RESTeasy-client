@@ -96,8 +96,8 @@ public class ClientApplication {
             profileToUpdate.setLastName(newLastName);
         }
         System.out.println("\n:---------- Profile With ID Updated = " + updateId + " ----------:\n");
-        Response response = ClientService.updateProfile(updateId, profileToUpdate);
-        System.out.println(response.readEntity(Profile.class));
+        Profile updateProfile = ClientService.updateProfile(updateId, profileToUpdate);
+        System.out.println(updateProfile);
         waitForInput(scanner);
     }
 

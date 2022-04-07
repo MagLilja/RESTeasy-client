@@ -147,7 +147,7 @@ public class ClientService {
      * @param profile with changes
      * @return on success returns the response, else returns null and prints the error status.
      */
-    static Response updateProfile(int id, Profile profile) {
+    static Profile updateProfile(int id, Profile profile) {
 
         try (Response response = client
                 .target(uri + "/profiles/" + id)
@@ -156,9 +156,9 @@ public class ClientService {
                 .invoke();) {
             if (response.getStatus() != 202) {
                 System.err.println(response.getStatus());
-                return response;
+                return null;
             }
-            return response;
+            return response.readEntity(Profile.class);
         }
     }
 }
